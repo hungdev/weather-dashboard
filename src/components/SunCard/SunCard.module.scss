@@ -1,0 +1,25 @@
+.infoCardContainer {
+  padding: 20px;
+  width: 270px;
+  height: 175px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: #fff;
+
+  .title {
+    font-weight: 500;
+  }
+
+  .sunInfo {
+    display: flex;
+    align-items: center;
+
+    &>img {
+      margin-right: 10px;
+    }
+  }
+
+
+}

@@ -1,0 +1,44 @@
+.infoCityCard {
+  padding: 15px;
+  width: 420px;
+  height: 170px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: #fff;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cityName {
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  .temperatureGroup {
+    display: flex;
+    align-items: center;
+  }
+
+  .dayWeather {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .weekday {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .deleteWidgetIcon {
+    cursor: pointer;
+  }
+
+}
