@@ -22,7 +22,6 @@ function App() {
     const getCityListLocation = async () => {
       const forecastList = cityList?.map(ct => getForecast({ ...ct.value, units: 'metric' }));
       const allCityForecast = await Promise.all(forecastList);
-      console.log('allCityForecast', allCityForecast);
       const mergeCityInfo = cityList.map((ct, idx) => ({ ...ct, weatherInfo: allCityForecast?.[idx].data }));
       setCityList(mergeCityInfo);
       localStorage.setItem("cityList", JSON.stringify(mergeCityInfo));
@@ -30,13 +29,13 @@ function App() {
     cityList?.length && getCityListLocation();
 
 
-    // Auto refresh to update weather
-    // const intervalId = setInterval(function () {
-    //   getDefaultLocation();
-    //   getCityListLocation
-    // }, 10000);
+    // Auto refresh to update weather after 5mins
+    const intervalId = setInterval(function () {
+      getDefaultLocation();
+      getCityListLocation();
+    }, 300000);
 
-    // return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId);
   }, [coordination, cityList?.length]);
 
   const onSearchChange = async (co) => {
@@ -53,10 +52,7 @@ function App() {
   };
 
   const onDeleteWidget = (city) => {
-    // const isExisted = cityList?.find(e => e.label === city.label);
-    // console.log('isExisted', isExisted);
     setCityList(prev => prev?.filter(el => el.label !== city.label));
-    // !isExisted && setCityList(prev => ([...prev, city]));
   };
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
