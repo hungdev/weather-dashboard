@@ -17,7 +17,7 @@ export default function CityCard({ data, onDelete }) {
       <div className={styles.header}>
         <p className={styles.cityName}>{data?.label}</p>
         <div className={styles.temperatureGroup}>
-          <p>19<sup>ºC</sup></p>
+          <p>{Math.round(data?.weatherInfo?.current?.temp)}<sup>ºC</sup></p>
           <Player
             src={animation}
             autoplay
