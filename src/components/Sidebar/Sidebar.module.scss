@@ -5,6 +5,11 @@
   display: flex;
   flex-direction: column;
 
+  @media only screen and (max-width: 768px) {
+    height: auto;
+    width: 100%;
+  }
+
   .searchBox {
     position: relative;
     width: 80%;

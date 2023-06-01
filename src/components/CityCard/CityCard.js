@@ -1,19 +1,67 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useDrag, useDrop } from "react-dnd";
+import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
+import '@szhsin/react-menu/dist/transitions/slide.css';
 import styles from './CityCard.module.scss';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import dayjs from 'dayjs';
 import { animations } from "../../config/constants";
-import PopupMenu from '../PopupMenu/PopupMenu';
 
-export default function CityCard({ data, onDelete }) {
+export default function CityCard({ data, onDelete, moveCard, index, id }) {
+  const cityCardRef = useRef(null);
+
+  const [{ handlerId }, drop] = useDrop({
+    accept: 'CARD',
+    collect(monitor) {
+      return {
+        handlerId: monitor.getHandlerId(),
+      };
+    },
+    hover(item, monitor) {
+      if (!cityCardRef.current) {
+        return;
+      }
+      const dragIndex = item.index;
+      const hoverIndex = index;
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+      const hoverBoundingRect = cityCardRef.current?.getBoundingClientRect();
+      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const clientOffset = monitor.getClientOffset();
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
+      }
+      // Dragging upwards
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return;
+      }
+      moveCard?.(dragIndex, hoverIndex);
+      item.index = hoverIndex;
+    },
+  });
+
+  const [{ isDragging }, drag] = useDrag({
+    type: 'CARD',
+    item: () => {
+      return { id, index };
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+  const opacity = isDragging ? 0 : 1;
+  drag(drop(cityCardRef));
 
   const animation = data && animations.find((animation) =>
     String(data?.weatherInfo?.current?.weather?.[0]?.id).startsWith(animation.id)
   )?.url;
 
   return (
-    <div className={styles.infoCityCard}>
+    <div ref={cityCardRef} className={styles.infoCityCard} style={{ opacity }} data-handler-id={handlerId}>
       <div className={styles.header}>
         <p className={styles.cityName}>{data?.label}</p>
         <div className={styles.temperatureGroup}>
@@ -29,15 +77,11 @@ export default function CityCard({ data, onDelete }) {
             speed={2}
           />
         </div>
-        <PopupMenu
-          position='bottom-right'
-          renderChildren={(setVisible => <div className={styles.deleteWidgetIcon}
-            onClick={() => {
-              setVisible({ show: false, top: 0, left: 0 });
-              onDelete?.(data);
-            }}>Delete Widget</div>)}
-          renderToggle={<BsThreeDotsVertical />}
-        />
+        <Menu menuButton={<MenuButton className={styles.btnVertical} ><BsThreeDotsVertical /></MenuButton>}
+          align='end'
+          transition>
+          <MenuItem onClick={() => onDelete?.(data)}>Delete Widget</MenuItem>
+        </Menu>
         {/* <p>{data?.weatherInfo?.current?.weather?.[0]?.main}</p> */}
       </div>
       <div className={styles.dayWeather}>

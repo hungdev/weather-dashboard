@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styles from './Dashboard.module.scss';
 import Select from 'react-select';
 import dayjs from 'dayjs';
@@ -24,7 +24,7 @@ const timeRangeStyle = {
     borderRadius: 20
   }),
 };
-export default function Dashboard({ weatherInfo, cityList, onDeleteWidget }) {
+export default function Dashboard({ weatherInfo, cityList, onDeleteWidget, moveCard }) {
   const [location, setLocation] = useState('ha noi');
   // const [geo, setGeo] = useState(null);
   const [displayType, setDisplayType] = useState({ type: 'today', range: 8 });
@@ -39,8 +39,6 @@ export default function Dashboard({ weatherInfo, cityList, onDeleteWidget }) {
     maxTemp: Math.round(day?.temp?.max),
     hourTemp: Math.round(day?.temp)
   })).slice(0, displayType.range);
-
-  console.log('weatherInfo?.daily', weatherInfo);
 
   // useEffect(() => {
   //   const getDefaultLocation = async () => {
@@ -97,7 +95,15 @@ export default function Dashboard({ weatherInfo, cityList, onDeleteWidget }) {
       </div>
       <p className={styles.txtTodayHighlight}>Favorite Cities</p>
       <div className={styles.weatherAdditionInfo}>
-        {cityList?.map((city, idx) => <CityCard key={idx} data={city} onDelete={onDeleteWidget} />)}
+        {cityList?.map((city, idx) =>
+          <CityCard
+            key={idx}
+            index={idx}
+            id={city.label}
+            moveCard={moveCard}
+            data={city}
+            onDelete={onDeleteWidget}
+          />)}
       </div>
     </div>
   );

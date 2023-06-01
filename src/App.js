@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './App.module.scss';
 import Sidebar from './components/Sidebar/Sidebar';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -57,11 +59,22 @@ function App() {
     // !isExisted && setCityList(prev => ([...prev, city]));
   };
 
+  const moveCard = useCallback((dragIndex, hoverIndex) => {
+    setCityList((list) => {
+      let changed = [...list];
+      changed.splice(dragIndex, 1, list[hoverIndex]);
+      changed.splice(hoverIndex, 1, list[dragIndex]);
+      return changed;
+    });
+  }, []);
+
 
   return (
     <div className={styles.appContainer}>
-      <Sidebar onSearchChange={onSearchChange} weatherInfo={weatherInfo} onAddCity={onAddCity} />
-      <Dashboard weatherInfo={weatherInfo} cityList={cityList} onDeleteWidget={onDeleteWidget} />
+      <DndProvider backend={HTML5Backend}>
+        <Sidebar onSearchChange={onSearchChange} weatherInfo={weatherInfo} onAddCity={onAddCity} />
+        <Dashboard weatherInfo={weatherInfo} cityList={cityList} onDeleteWidget={onDeleteWidget} moveCard={moveCard} />
+      </DndProvider>
     </div>
   );
 }
