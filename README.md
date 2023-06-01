@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Weather Forecast
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Weather App
 
-## Available Scripts
+Create a weather application that provides detailed weather information for Singapore.
+ 
 
-In the project directory, you can run:
+Functionalities:
 
-### `npm start`
+* Include a search field for the user to enter location.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Display hourly weather forecast for the current day
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* Allows the option to show X-day (e.g. 5-day) weather forecast
 
-### `npm test`
+* Have a responsive design and auto re-fresh periodically to get updated data
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Use a weather API of choice (such as open weather map) to fetch the weather data for the location
 
-### `npm run build`
+* If needed, use a geo-location API to get coordinates for the location
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Design the UI as a widget-based dashboard.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Allows adding widget by entering the city name, the widget will show the details of current weather and forecast weather for 1-7 days of that city.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Allows deletion of widgets.
 
-### `npm run eject`
+* Allows drag to change the position of the widget on the screen.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Live Preview
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[weather-dashboard-azure.vercel.app](weather-dashboard-azure.vercel.app)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Preview
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Preview Image](https://github.com/hungdev/react-native-instagram-login/blob/master/Screenshot 2023-06-01 at 16.33.34.png)
 
-## Learn More
+## How to run?
+```
+$ git clone git@github.com:hungdev/weather-dashboard.git
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+$ cd weather-dashboard
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+$ npm install
 
-### Code Splitting
+$ npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Original Design
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Design on Dribble](https://dribbble.com/shots/10460680-Weather-App)
