@@ -46,8 +46,6 @@ function App() {
 
   const onAddCity = (city) => {
     const isExisted = cityList?.find(e => e.label === city.label);
-    console.log('isExisted', isExisted);
-    // setCityList(prev => isExisted ? prev?.filter(el => el.label !== city.label) : [...prev, city]);
     !isExisted && setCityList(prev => ([...prev, city]));
   };
 

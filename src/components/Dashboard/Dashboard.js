@@ -40,19 +40,6 @@ export default function Dashboard({ weatherInfo, cityList, onDeleteWidget, moveC
     hourTemp: Math.round(day?.temp)
   })).slice(0, displayType.range);
 
-  // useEffect(() => {
-  //   const getDefaultLocation = async () => {
-  //     try {
-  //       // setIsLoading(true);
-  //       const geoResult = await getGeo({ q: location, limit: 5, });
-  //       console.log('geoResult', geoResult);
-  //       setGeo(geoResult.data?.[0]);
-  //       // setIsLoading(false);
-  //     } catch (error) { console.log('getGeo', error); }
-  //   };
-  //   getDefaultLocation();
-  // }, []);
-
   const onSelectTimeRange = (range) => {
     setDisplayType(prev => ({ ...prev, range: range.value }));
   };
