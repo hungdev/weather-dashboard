@@ -10,6 +10,7 @@ React Weather App
 
 ## Preview
 
+![Preview Gif](https://github.com/hungdev/weather-dashboard/blob/master/Recording%202023-06-01%20at%2017.19.47.gif)
 ![Preview Image](https://github.com/hungdev/weather-dashboard/blob/master/Screenshot%202023-06-01%20at%2016.33.34.png)
 
 ## Install
