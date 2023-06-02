@@ -6,7 +6,7 @@ React Weather App
 
 ## Live Preview
 
-[weather-dashboard-azure.vercel.app](weather-dashboard-azure.vercel.app)
+[weather-dashboard-azure.vercel.app](https://weather-dashboard-azure.vercel.app/)
 
 ## Preview
 
